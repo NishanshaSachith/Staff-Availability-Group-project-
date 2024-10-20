@@ -1,0 +1,109 @@
+/* General styles */
+
+
+center {
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
+}
+h2{
+    margin-top: 3%;
+}
+.login-btn {
+    background-color: #ffffff;
+    color: #003366;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.login-btn:hover {
+    background-color: #005bb5;
+    color: #ffffff;
+}
+
+/* Staff Schedules Section */
+.staff-schedules {
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 20px;
+    margin-top: 20px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.staff-schedules h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #003366;
+}
+
+/* Calendar Table */
+.schedule-table {
+    width: 80%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.schedule-table th, .schedule-table td {
+    border: 1px solid #dddddd;
+    padding: 10px;
+    text-align: left;
+}
+
+.schedule-table th {
+    background-color: #005bb5;
+    color: #ffffff;
+}
+
+.schedule-table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+/* Booking System */
+.booking-system {
+    width: 80%;
+    margin-top: 20px;
+    background-color: #e6f2ff;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.booking-system h3 {
+    font-size: 20px;
+    margin-bottom: 15px;
+    color: #003366;
+}
+
+.booking-system form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.booking-system label {
+    font-weight: bold;
+    color: #003366;
+}
+
+.booking-system input,
+.booking-system select {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.booking-system .book-btn {
+    background-color: #004d99;
+    color: #ffffff;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.booking-system .book-btn:hover {
+    background-color: #003b7a;
+}

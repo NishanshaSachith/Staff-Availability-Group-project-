@@ -1,0 +1,107 @@
+/* styles.css */
+
+/* Body styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #f4f4f4;
+}
+h2{
+    margin-top: 7%;
+}
+/* Main content styles */
+.center {
+    text-align: center;
+}
+
+/* Form styles */
+.add-schedule-form,
+.edit-schedule-form {
+    background-color: #ffffff;
+    border: 1px solid #005bb5;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 20px auto;
+    width: 50%;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.add-schedule-form label,
+.edit-schedule-form label {
+    display: block;
+    margin: 10px 0 5px;
+}
+
+.add-schedule-form input,
+.edit-schedule-form input,
+.add-schedule-form select,
+.edit-schedule-form select {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+button {
+    background-color: #005bb5;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+}
+.login-btn {
+    background-color: #ffffff;
+    color: #003366;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.login-btn:hover {
+    background-color: #005bb5;
+    color: #ffffff;
+}
+button:hover {
+    background-color: #003f7f;
+}
+
+/* Table styles */
+.schedule-table {
+    width: 80%;
+    padding: 500% ;
+    /* border-collapse: collapse; */
+    background-color: #ffffff;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.schedule-table th,
+.schedule-table td {
+    border: 1px solid #005bb5;
+    padding: 10px;
+    text-align: center;
+}
+
+.schedule-table th {
+    background-color: #005bb5;
+    color: white;
+}
+
+.edit-link, .delete-link {
+    color: #007bff;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.edit-link:hover, .delete-link:hover {
+    color: #0056b3;
+}
+#tal{
+    margin-bottom: 5%;
+}
+

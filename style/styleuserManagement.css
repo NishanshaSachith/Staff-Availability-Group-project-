@@ -1,0 +1,110 @@
+/* Base styles for the user management page */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+    line-height: 1.6;
+}
+.login-btn {
+    background-color: #ffffff;
+    color: #003366;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.login-btn:hover {
+    background-color: #005bb5;
+    color: #ffffff;
+}
+h3 {
+    text-align: center;
+    color: black;
+}
+
+h2 {
+    margin-top: 7%;
+    text-align: center;
+    color: black;
+}
+
+.user-form {
+    max-width: 400px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.user-form h3 {
+    text-align: center;
+}
+
+.user-form label {
+    display: block;
+    margin: 10px 0 5px;
+}
+
+.user-form input,
+.user-form select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.user-form button {
+    width: 100%;
+    padding: 10px;
+    background-color: #005bb5;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.user-form button:hover {
+    background-color: #003f7f;
+}
+
+table {
+    width: 80%;
+    margin-bottom: 5%;
+    margin-top: 20px;
+    margin-left: 10%;
+    border-radius: 8px;
+    border-collapse: collapse;
+    background-color: #fff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ccc;
+}
+
+th {
+    background-color: #005bb5;
+    color: white;
+}
+
+tr:hover {
+    background-color: #f1f1f1;
+}
+
+.success {
+    color: green;
+    text-align: center;
+}
+
+.error {
+    color: red;
+    text-align: center;
+}

@@ -1,0 +1,289 @@
+/* navbar.css */
+
+/* General Navbar Styles */
+.header {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(135deg, #004d99, #005bb5); /* Gradient background */
+    padding: 0.3em 20px;
+    color: white;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4); /* Darker shadow for depth */
+    border-bottom: 3px solid #f0a500; /* Accent border */
+    border-radius: 0 0 10px 10px; /* Rounded bottom corners */
+}
+
+/* Logo Styles */
+.logo img {
+    width: 70px; /* Slightly larger logo */
+    height: auto;
+    transition: transform 0.3s; /* Logo hover effect */
+}
+
+.logo img:hover {
+    transform: scale(1.1) rotate(5deg); /* Slight rotation and scale on hover */
+}
+
+/* Title Styles */
+.navbar h1 {
+    font-size: 22px; /* Larger font size */
+    margin-left: 20px;
+    font-weight: bold; /* Make title bold */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* More pronounced text shadow */
+}
+
+/* Navigation Links */
+.navbar ul {
+    display: flex;
+    margin-left: auto; /* Move the navigation to the right */
+}
+
+.navbar ul li {
+    list-style: none;
+    margin: 0 15px; /* Reduced margin */
+    position: relative; /* Position for hover effect */
+}
+
+.navbar ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 15px; /* Slightly larger font size */
+    padding: 8px 12px; /* Added padding for clickable area */
+    border-radius: 5px; /* Rounded corners */
+    transition: background-color 0.3s ease-in, color 0.3s ease-in, transform 0.3s ease-in; /* Smooth transition */
+}
+
+/* Hover Effects */
+.navbar ul li a:hover {
+    background-color: rgba(240, 165, 0, 0.3); /* Light gold background on hover */
+    color: #f0a500; /* Change text color on hover */
+    transform: translateY(-3px); /* Lift effect on hover */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5); /* Shadow on hover for depth */
+}
+
+/* Sign Out Button */
+.login-btn {
+    padding: 10px 20px;
+    background-color: #f0a500;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in, transform 0.3s, box-shadow 0.3s; /* Consistent transitions */
+    font-weight: bold; /* Make button text bold */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow to button */
+}
+
+.login-btn:hover {
+    background-color: #d48f00;
+    transform: scale(1.05);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4); /* Larger shadow on hover */
+}
+
+/* Base Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+    line-height: 1.6;
+}
+
+/* Container for the page */
+.container {
+    max-width: 1200px;
+    margin: 100px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    transition: transform 0.3s ease-in;
+}
+
+.container:hover {
+    transform: scale(1.01);
+}
+
+/* Contact Us Section */
+#contact-us h2 {
+    font-size: 32px;
+    color: #005bb5;
+    text-align: center;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    border-bottom: 3px solid #f0a500;
+    display: inline-block;
+    padding-bottom: 10px;
+}
+
+/* Contact Info */
+.contact-info {
+    margin-bottom: 40px;
+    padding: 20px;
+    background: linear-gradient(135deg, #e0f7fa, #b2ebf2);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s;
+}
+
+.contact-info:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.contact-info h3 {
+    font-size: 24px;
+    color: #004d99;
+    margin-bottom: 15px;
+}
+
+.contact-info p {
+    font-size: 18px;
+    margin: 10px 0;
+    color: #333;
+}
+
+.contact-info a {
+    color: #004d99;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.contact-info a:hover {
+    color: #f0a500;
+}
+
+/* Inquiry Form Styles */
+.inquiry-form {
+    margin-top: 30px;
+    background-color: #f5f5f5;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.inquiry-form h3 {
+    font-size: 24px;
+    color: #005bb5;
+    margin-bottom: 15px;
+}
+
+.inquiry-form label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: #333;
+    font-size: 16px;
+}
+
+.inquiry-form input, .inquiry-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+    transition: border 0.3s;
+}
+
+.inquiry-form input:focus, .inquiry-form textarea:focus {
+    border: 1px solid #004d99;
+}
+
+.inquiry-form button {
+    padding: 12px 20px;
+    background-color: #005bb5;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: bold;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+
+.inquiry-form button:hover {
+    background-color: #003d7a;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Footer Enhancements */
+footer {
+    background-color: #005bb5;
+    color: #ffffff;
+    padding: 15px 0;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.2);
+    border-top: 2px solid #f0a500;
+}
+
+footer p {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 300;
+    letter-spacing: 1px;
+    opacity: 0.9;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        width: 90%;
+        margin-top: 80px;
+    }
+
+    #contact-us h2 {
+        font-size: 26px;
+    }
+
+    .contact-info, .inquiry-form {
+        margin-bottom: 20px;
+    }
+
+    .contact-info h3, .inquiry-form h3 {
+        font-size: 20px;
+    }
+
+    .inquiry-form button {
+        font-size: 16px;
+    }
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .navbar h1 {
+        font-size: 24px; /* Responsive font size */
+    }
+
+    .navbar ul {
+        flex-direction: column;
+        margin-left: 0; /* Reset margin */
+    }
+
+    .navbar ul li {
+        margin: 10px 0; /* Space between links */
+    }
+
+    footer {
+        font-size: 12px; /* Smaller font size for mobile */
+    }
+}

@@ -1,0 +1,146 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #f4f4f4;
+}
+.login-btn {
+    background-color: #ffffff; /* Background color */
+    color: #003366; /* Text color */
+    font-size: small; /* Font size */
+    border: none; /* No border */
+    padding: 3px 10px; /* Padding for the button */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s; /* Transition effect for background color */
+    text-decoration: none; /* Ensure no underline on the button text */
+}
+
+.login-btn:hover {
+    background-color: #005bb5; /* Background color on hover */
+    color: #ffffff; /* Text color on hover */
+}
+
+#staff-management-title, #existing-staff-title {
+    margin-top: 20px;
+}
+form {
+    width: 500px;
+    background-color: white;
+    padding: 20px;
+    margin-bottom: 20px;
+    
+}
+
+label {
+    display: block;
+    margin-top: 10px;
+}
+
+input[type="text"],
+input[type="email"] {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.submit-btn {
+    margin-top: 15px;
+    padding: 10px 15px;
+    background-color: #005bb5;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.submit-btn:hover {
+    background-color: #003f7f;
+}
+
+.success {
+    color: #003f7f;
+}
+
+.error {
+    color: red;
+}
+#staff-list {
+    width: 80%;
+    border-collapse: collapse;
+    margin-bottom: 5%;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Adds a subtle shadow */
+    border-radius: 8px; /* Rounds the corners */
+    overflow: hidden; /* Ensures rounded corners are respected */
+}
+
+#staff-list th, #staff-list td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Header styles */
+#staff-list th {
+    background-color: #005bb5; /* Green background for header */
+    color: white; /* White text for header */
+    font-weight: bold; /* Makes header text bold */
+}
+
+/* Row styles */
+#staff-list tr:nth-child(even) {
+    background-color: #f9f9f9; /* Light gray for even rows */
+}
+
+#staff-list tr:hover {
+    background-color: #f1f1f1; /* Darker gray on hover for rows */
+}
+
+/* Responsive table */
+@media (max-width: 600px) {
+    #staff-list, #staff-list th, #staff-list td {
+        display: block; /* Make cells block-level for stacking */
+        width: 100%; /* Full width on smaller screens */
+    }
+    
+    #staff-list th {
+        position: absolute; /* Position header absolute to hide it in stacked view */
+        top: -9999px; /* Moves it out of view */
+        left: -9999px; /* Moves it out of view */
+    }
+    
+    #staff-list tr {
+        margin-bottom: 15px; /* Spacing between rows in mobile view */
+        border: 1px solid #ddd; /* Adds border for block items */
+        border-radius: 8px; /* Rounds corners for mobile rows */
+    }
+    
+    #staff-list td {
+        text-align: right; /* Aligns text to the right in mobile view */
+        padding-left: 50%; /* Adds space for labels */
+        position: relative; /* Allows for absolute positioning of labels */
+    }
+
+    #staff-list td::before {
+        content: attr(data-label); /* Use data attribute for responsive labels */
+        position: absolute; /* Positioning the label absolutely */
+        left: 10px; /* Space from left */
+        width: 45%; /* Width of label */
+        padding-right: 10px; /* Space from label text */
+        text-align: left; /* Align label to the left */
+        font-weight: bold; /* Makes label text bold */
+        color: #777; /* Gray color for labels */
+    }
+}
+
+
+.action-link {
+    color: #007BFF;
+    text-decoration: none;
+}
+
+.action-link:hover {
+    text-decoration: underline;
+}

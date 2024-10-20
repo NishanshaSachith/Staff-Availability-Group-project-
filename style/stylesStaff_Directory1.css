@@ -1,0 +1,139 @@
+/* Staff Directory Section */
+.staff-directory {
+    margin-top: 3%;
+    background-color: #f9f9f9; /* Light background for the section */
+    padding: 60px 20px; /* Added padding to create space around content */
+    min-height: calc(100vh - 120px); /* Ensure content fills available height */
+    border-radius: 10px; /* Rounded corners for the section */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Soft shadow for depth */
+}
+.login-btn {
+    background-color: #ffffff;
+    color: #003366;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.login-btn:hover {
+    background-color: #005bb5;
+    color: #ffffff;
+}
+/* Centering H2 */
+.staff-directory h2 {
+    font-size: 32px; /* Larger title font */
+    margin-bottom: 20px; /* Space below the title */
+    color: #004d99; /* Dark blue color for the title */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3); /* Subtle text shadow */
+}
+
+/* Search Input Styles */
+#searchInput {
+    width: 80%; /* Full width of the search input */
+    padding: 10px; /* Padding for input */
+    border: 2px solid #005bb5; /* Blue border */
+    border-radius: 5px; /* Rounded corners */
+    font-size: 16px; /* Font size for better readability */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Shadow for input */
+    transition: border-color 0.3s, box-shadow 0.3s; /* Smooth transition */
+}
+
+#searchInput:focus {
+    border-color: #f0a500; /* Change border color on focus */
+    box-shadow: 0 0 10px rgba(240, 165, 0, 0.5); /* Highlight effect */
+}
+
+/* Filters Section */
+.filters {
+    margin-top: 20px; /* Space above filters */
+    font-size: 16px; /* Font size for better readability */
+}
+
+.filters label {
+    margin-right: 10px; /* Space between label and select */
+    color: #004d99; /* Color for labels */
+}
+
+/* Select Box Styles */
+#categorySelect {
+    padding: 10px; /* Padding for select box */
+    border: 2px solid #005bb5; /* Blue border for select */
+    border-radius: 5px; /* Rounded corners */
+    transition: border-color 0.3s; /* Smooth transition */
+}
+
+#categorySelect:focus {
+    border-color: #f0a500; /* Change border color on focus */
+}
+
+/* Staff List Styles */
+.staff-list {
+    display: grid; /* Use grid layout for profiles */
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Responsive grid */
+    gap: 20px; /* Space between profiles */
+    margin-top: 20px; /* Space above staff list */
+}
+
+/* Staff Profile Styles */
+.staff-profile {
+    background-color: #ffffff; /* White background for profiles */
+    padding: 20px; /* Padding for profiles */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Soft shadow */
+    transition: transform 0.3s; /* Transition for hover effect */
+}
+
+.staff-profile:hover {
+    transform: translateY(-5px); /* Lift effect on hover */
+}
+
+/* Staff Photo Styles */
+.staff-photo {
+    width: 100%; /* Full width for photos */
+    border-radius: 10px; /* Match the profile corners */
+    margin-bottom: 10px; /* Space below the image */
+}
+
+/* Staff Name and Position */
+.staff-profile h3 {
+    font-size: 22px; /* Larger font for names */
+    color: #005bb5; /* Dark blue color */
+}
+
+.staff-profile p {
+    margin: 5px 0; /* Space between paragraphs */
+    font-size: 14px; /* Standard font size for information */
+    color: #555; /* Darker gray for text */
+}
+
+/* Footer Styles */
+footer {
+    margin-top: 20px; /* Space above footer */
+    background: linear-gradient(135deg, #004d99, #005bb5); /* Match navbar gradient */
+    color: white;
+    padding: 15px; /* Padding for footer */
+    font-size: 14px; /* Font size for footer text */
+    box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.4); /* Shadow for footer */
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .staff-list {
+        grid-template-columns: 1fr; /* Single column layout on small screens */
+    }
+
+    #searchInput {
+        width: 100%; /* Full width for search input */
+    }
+
+    .filters {
+        display: flex;
+        flex-direction: column; /* Stack filters vertically */
+    }
+
+    .filters label {
+        margin-bottom: 10px; /* Space below labels in filters */
+    }
+}

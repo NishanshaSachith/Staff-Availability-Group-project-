@@ -1,0 +1,184 @@
+.container {
+    max-width: 1200px;
+    margin: 100px auto 0;
+    padding: 20px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Shadow for depth */
+    transition: all 0.3s ease-in-out;
+}
+.login-btn {
+    background-color: #ffffff;
+    color: #003366;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.login-btn:hover {
+    background-color: #005bb5;
+    color: #ffffff;
+}
+.container:hover {
+    transform: scale(1.02); /* Slight scale effect on hover */
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2); /* More pronounced shadow */
+}
+
+/* Section Styles */
+.section {
+    margin-bottom: 40px;
+}
+
+.section h3 {
+    font-size: 24px;
+    color: #004d99;
+    border-left: 4px solid #f0a500; /* Accent border */
+    padding-left: 10px;
+    margin-bottom: 15px;
+}
+
+.section p, .section ul {
+    font-size: 16px;
+    margin: 10px 0;
+}
+
+.section ul {
+    padding-left: 20px;
+}
+
+.section ul li {
+    margin: 5px 0;
+}
+
+/* Department Information */
+#department-info p {
+    text-align: justify;
+    background: rgba(0, 91, 181, 0.05); /* Light blue background */
+    padding: 10px;
+    border-left: 3px solid #005bb5;
+    border-radius: 5px;
+}
+
+/* Mission Statement */
+#mission ul {
+    list-style-type: square; /* Custom bullet points */
+}
+
+/* Faculty Grid */
+.faculty-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.faculty-card {
+    background: #f0f4f8;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s;
+}
+
+.faculty-card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transform: translateY(-5px);
+}
+
+.faculty-card h4 {
+    margin-bottom: 10px;
+    color: #005bb5;
+    font-size: 20px;
+}
+
+.faculty-card p {
+    font-size: 14px;
+    color: #555;
+}
+
+/* News Updates */
+#news-updates ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+#news-updates li {
+    margin-bottom: 15px;
+    background: rgba(240, 165, 0, 0.1);
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+#news-updates li strong {
+    color: #f0a500;
+}
+
+#news-updates p {
+    margin: 5px 0;
+}
+
+#news-updates small {
+    font-size: 12px;
+    color: #777;
+}
+
+/* Team Section */
+.team-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.team-card {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+    overflow: hidden;
+    max-width: 300px;
+    text-align: center;
+}
+
+.team-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+}
+
+.team-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-bottom: 3px solid #f0a500; /* Accent border */
+}
+
+.team-card h4 {
+    font-size: 18px;
+    margin: 10px 0;
+    color: #004d99;
+}
+
+.team-card p {
+    font-size: 14px;
+    color: #777;
+    margin-bottom: 10px;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .faculty-grid {
+        grid-template-columns: 1fr; /* Stack faculty cards */
+    }
+
+    .team-grid {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .team-card {
+        width: 100%;
+        max-width: 100%;
+    }
+}

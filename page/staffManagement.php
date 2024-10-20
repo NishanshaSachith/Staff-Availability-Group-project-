@@ -10,6 +10,14 @@ $password = "";
 $database = "staff_availability_system";
 $conn = new mysqli($servername, $username, $password, $database);
 
+// Handle Sign Out
+if (isset($_POST['sign_out'])) {
+    session_unset();
+    session_destroy();
+    header("Location: index.php"); // Redirect to login/registration page after sign out
+    exit();
+}
+
 // Check the connection
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);

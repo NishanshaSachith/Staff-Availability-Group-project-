@@ -1,0 +1,104 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #f4f4f4;
+}
+.login-btn {
+    background-color: #ffffff;
+    color: #003366;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.login-btn:hover {
+    background-color: #005bb5;
+    color: #ffffff;
+}
+.section-title {
+    color: #333;
+}
+
+.message-container {
+    margin: 10px 0;
+}
+
+.success {
+    color: green;
+}
+
+.error {
+    color: red;
+}
+
+.news-form {
+    width: 50%;
+    background: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.news-form label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.news-form input[type="text"],
+.news-form textarea {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.submit-button {
+    background: #005bb5;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.submit-button:hover {
+    background: #003f7f;
+}
+
+.existing-news-title {
+    margin-top: 20px;
+}
+
+.news-table {
+    border-radius: 8px;
+    width: 80%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.news-table th,
+.news-table td {
+    padding: 10px;
+    text-align: left;
+}
+
+.news-table th {
+    background: #005bb5;
+    color: white;
+}
+
+.edit-link,
+.delete-link {
+    color: #005bb5;
+    text-decoration: none;
+}
+
+.edit-link:hover,
+.delete-link:hover {
+    text-decoration: underline;
+}

@@ -7,6 +7,12 @@ $user = 'root';
 $pass = '';
 $charset = 'utf8mb4';
 
+if (isset($_POST['sign_out'])) {
+    session_unset();
+    session_destroy();
+    header("Location: index.php"); // Redirect to login/registration page after sign out
+    exit();
+}
 $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
 $options = [
     PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,

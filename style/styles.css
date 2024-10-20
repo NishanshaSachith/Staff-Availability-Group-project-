@@ -1,0 +1,148 @@
+/* Hero Section */
+.intro {
+    position: relative;
+    overflow: hidden;
+    padding: 60px 20px; /* Increased padding for better spacing */
+}
+.login-btn {
+    text-decoration: none; /* This removes any underline */
+    background-color: #ffffff;
+    color: #003366;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.login-btn:hover {
+    background-color: #005bb5;
+    color: #ffffff;
+}
+
+.hero-section {
+    position: relative;
+    text-align: center;
+}
+
+.hero-image {
+    width: 100%;
+    height: auto;
+    border-radius: 10px; /* Rounded corners for image */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+}
+
+.hero-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent background */
+    padding: 20px;
+    border-radius: 10px; /* Rounded corners for text box */
+}
+
+.hero-text h2 {
+    font-size: 36px; /* Larger heading */
+    margin: 0;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Text shadow for emphasis */
+}
+
+.hero-text p {
+    font-size: 18px; /* Slightly larger paragraph text */
+}
+
+/* Call to Action Button */
+.cta-btn {
+    padding: 15px 30px;
+    background-color: #f0a500; /* Accent color */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px; /* Slightly larger font */
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Smooth transitions */
+}
+
+.cta-btn:hover {
+    background-color: #d48f00; /* Darker shade on hover */
+    transform: scale(1.05); /* Slightly enlarge button on hover */
+}
+
+/* Updates Section */
+.updates {
+    margin-top: 40px; /* Margin above updates section */
+    padding: 20px;
+    background-color: white; /* White background for updates */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+}
+
+.updates h3 {
+    font-size: 28px; /* Larger heading for updates */
+    text-align: center; /* Center aligned heading */
+    color: #333; /* Dark text color */
+}
+
+#notification-list {
+    list-style-type: none; /* Remove default list styling */
+    padding: 0; /* Reset padding */
+    max-height: 300px; /* Limit height for scrolling */
+    overflow-y: auto; /* Enable scrolling */
+    margin: 20px 0; /* Margin above and below list */
+}
+
+#notification-list li {
+    padding: 10px;
+    border-bottom: 1px solid #e0e0e0; /* Separator line */
+    transition: background-color 0.3s ease; /* Smooth transition */
+}
+
+#notification-list li:last-child {
+    border-bottom: none; /* Remove bottom border for last item */
+}
+
+#notification-list li:hover {
+    background-color: rgba(240, 165, 0, 0.1); /* Highlight effect on hover */
+}
+
+/* Clear Notifications Button */
+.notify-btn {
+    padding: 10px 20px;
+    background-color: #ff4d4d; /* Red color for emphasis */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Smooth transition */
+}
+
+.notify-btn:hover {
+    background-color: #cc0000; /* Darker red on hover */
+}
+
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .hero-text h2 {
+        font-size: 28px; /* Responsive font size for heading */
+    }
+
+    .hero-text p {
+        font-size: 16px; /* Responsive font size for paragraph */
+    }
+
+    .cta-btn, .notify-btn {
+        width: 100%; /* Full width buttons on mobile */
+        font-size: 16px; /* Responsive font size for buttons */
+    }
+
+    .updates {
+        padding: 15px; /* Adjust padding for mobile */
+    }
+
+    .updates h3 {
+        font-size: 24px; /* Responsive font size for updates heading */
+    }
+}
