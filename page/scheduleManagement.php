@@ -98,16 +98,16 @@ $scheduleResult = $conn->query($scheduleQuery);
         <div class="logo">
             <img src="../media/department-logo.png" alt="Department Logo" />
         </div>
-        <h1>Staff Availability System(Admin)</h1>
+        <h1>Staff Availability System</h1>
         <nav>
-            <ul class="nav-menu">
-                <li><a href="homeadmin.php">Homepage</a></li>
-                <li><a href="AppointmentManagement.php">Appointment Management</a></li>
-                <li><a href="userManagement.php">User Management</a></li>
-                <li><a href="staffManagement.php">Staff Management</a></li>
-                <li><a href="scheduleManagement.php">Schedule Management</a></li>
-                <li><a href="newsManagement.php">News Management</a></li>
-            </ul>
+        <ul class="nav-list" id="dropdown-content">
+                    <li><a href="homeadmin.php">Home</a></li>
+                    <li><a href="AppointmentManagement.php">Appointment</a></li>
+                    <li><a href="userManagement.php">User</a></li>
+                    <li><a href="staffManagement.php">Staff</a></li>
+                    <li><a href="scheduleManagement.php">Schedule</a></li>
+                    <li><a href="newsManagement.php">News</a></li>
+                </ul>
         </nav>
         <form method="POST" style="display: inline;">
                 <button type="submit" name="sign_out" class="login-btn">Sign Out</button>

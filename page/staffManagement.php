@@ -106,13 +106,13 @@ $staffResult = $conn->query($staffQuery);
             </div>
             <h1>Staff Availability System</h1>
             <nav>
-                <ul class="navbar-links" id="dropdown-content">
-                    <li><a href="homeadmin.php">Homepage</a></li>
-                    <li><a href="AppointmentManagement.php">Appointment Management</a></li>
-                    <li><a href="userManagement.php">User Management</a></li>
-                    <li><a href="staffManagement.php">Staff Management</a></li>
-                    <li><a href="scheduleManagement.php">Schedule Management</a></li>
-                    <li><a href="newsManagement.php">News Management</a></li>
+            <ul class="nav-list" id="dropdown-content">
+                    <li><a href="homeadmin.php">Home</a></li>
+                    <li><a href="AppointmentManagement.php">Appointment</a></li>
+                    <li><a href="userManagement.php">User</a></li>
+                    <li><a href="staffManagement.php">Staff</a></li>
+                    <li><a href="scheduleManagement.php">Schedule</a></li>
+                    <li><a href="newsManagement.php">News</a></li>
                 </ul>
             </nav>
             <a href="index.php" class="login-btn">Sign Out</a>
@@ -197,7 +197,9 @@ $staffResult = $conn->query($staffQuery);
     <?php endwhile; ?>
 </table>
 </center>
-
+<footer>
+    <p>&copy; 2024 Computer Science Department. All rights reserved.</p>
+</footer>
 <?php
 $conn->close(); // Close the database connection
 ?>

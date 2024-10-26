@@ -39,8 +39,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['register'])) {
             if ($stmt->execute([$name, $email, $password, $role])) {
                 // If user is staff, insert into staff table
                 if ($role === 'staff' && $position) {
-                    $stmt = $pdo->prepare("INSERT INTO staff (name, position) VALUES (?, ?)");
-                    $stmt->execute([$name, $position]);
+                    $stmt = $pdo->prepare("INSERT INTO staff (name, position, email) VALUES (?, ?, ?)");
+                    $stmt->execute([$name, $position, $email]);
                 }
 
                 // Redirect to home page with a welcome message
@@ -55,12 +55,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['register'])) {
     }
 }
 
-// Handle Login
+// Handle User Login
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['login'])) {
     $email = trim($_POST['login-email']);
     $password = $_POST['login-password'];
 
-    // Prepare and execute login query
+    // Prepare and execute login query for users
     $stmt = $pdo->prepare("SELECT * FROM users WHERE email = ?");
     $stmt->execute([$email]);
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -76,14 +76,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['login'])) {
     }
 }
 
-// Handle Admin Login
+// Handle Staff Login
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['admin_login'])) {
     $email = trim($_POST['admin-email']);
     $password = $_POST['admin-password'];
 
-    // Check if admin credentials are correct (you may want to validate this against a separate table)
-    // Assuming admin email and password are predefined for simplicity
-    if ($email === 'admin@gmail.com' && $password === 'admin') {
+    // Check if admin credentials are correct against the users table
+    $stmt = $pdo->prepare("SELECT * FROM users WHERE email = ? AND role = 'staff'");
+    $stmt->execute([$email]);
+    $staff = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if ($staff && password_verify($password, $staff['password'])) {
         $_SESSION['admin'] = true; // Set a session variable for admin access
         header("Location: homeadmin.php"); // Redirect to admin home page
         exit();
@@ -119,25 +122,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['admin_login'])) {
     <section class="auth-section">
         <div class="auth-container">
             <div class="auth-tabs">
-                <button id="loginTab" class="tab active" onclick="showLogin()">Login</button>
+                <button id="loginTab" class="tab active" onclick="showLogin()">Student Login</button>
                 <button id="registerTab" class="tab" onclick="showRegister()">Register</button>
-                <button id="adminLoginTab" class="tab" onclick="showAdminLogin()">Admin Login</button>
+                <button id="adminLoginTab" class="tab" onclick="showAdminLogin()">Staff Login</button>
             </div>
             <div class="auth-forms">
-                <!-- Login Form -->
-                <form id="loginForm" class="auth-form" method="POST">
-                    <h2>Staff/Student Login</h2>
-                    <div class="input-group">
-                        <label for="login-email">Email</label>
-                        <input type="email" name="login-email" id="login-email" required>
-                    </div>
-                    <div class="input-group">
-                        <label for="login-password">Password</label>
-                        <input type="password" name="login-password" id="login-password" required>
-                    </div>
-                    <button type="submit" name="login" class="auth-btn">Login</button>
-                </form>
-
                 <!-- Registration Form -->
                 <form id="registerForm" class="auth-form hidden" method="POST">
                     <h2>Registration</h2>
@@ -167,9 +156,23 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['admin_login'])) {
                     <button type="submit" name="register" class="auth-btn">Register</button>
                 </form>
 
-                <!-- Admin Login Form -->
+                <!-- Login Form -->
+                <form id="loginForm" class="auth-form" method="POST">
+                    <h2>Student Login</h2>
+                    <div class="input-group">
+                        <label for="login-email">Email</label>
+                        <input type="email" name="login-email" id="login-email" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="login-password">Password</label>
+                        <input type="password" name="login-password" id="login-password" required>
+                    </div>
+                    <button type="submit" name="login" class="auth-btn">Login</button>
+                </form>
+
+                <!-- Staff Login Form -->
                 <form id="adminLoginForm" class="auth-form hidden" method="POST">
-                    <h2>Admin Login</h2>
+                    <h2>Staff Login</h2>
                     <div class="input-group">
                         <label for="admin-email">Email</label>
                         <input type="email" name="admin-email" id="admin-email" required>
@@ -194,41 +197,40 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['admin_login'])) {
             document.getElementById('loginForm').classList.remove('hidden');
             document.getElementById('registerForm').classList.add('hidden');
             document.getElementById('adminLoginForm').classList.add('hidden');
+            // Set active tab
             setActiveTab('loginTab');
         }
 
         // Function to show the registration form and hide others
         function showRegister() {
-            document.getElementById('registerForm').classList.remove('hidden');
             document.getElementById('loginForm').classList.add('hidden');
+            document.getElementById('registerForm').classList.remove('hidden');
             document.getElementById('adminLoginForm').classList.add('hidden');
+            // Set active tab
             setActiveTab('registerTab');
         }
 
-        // Function to show the admin login form and hide others
+        // Function to show the staff login form and hide others
         function showAdminLogin() {
-            document.getElementById('adminLoginForm').classList.remove('hidden');
             document.getElementById('loginForm').classList.add('hidden');
             document.getElementById('registerForm').classList.add('hidden');
+            document.getElementById('adminLoginForm').classList.remove('hidden');
+            // Set active tab
             setActiveTab('adminLoginTab');
         }
 
-        // Function to set active tab
-        function setActiveTab(tabId) {
-            document.querySelectorAll('.tab').forEach(tab => {
+        // Function to set active tab style
+        function setActiveTab(activeTabId) {
+            const tabs = document.querySelectorAll('.tab');
+            tabs.forEach(tab => {
                 tab.classList.remove('active');
             });
-            document.getElementById(tabId).classList.add('active');
+            document.getElementById(activeTabId).classList.add('active');
         }
 
-        // Show/hide position input based on role selection
+        // Show position input if staff role is selected
         document.getElementById('register-role').addEventListener('change', function() {
-            const positionGroup = document.getElementById('position-group');
-            if (this.value === 'staff') {
-                positionGroup.style.display = 'block';
-            } else {
-                positionGroup.style.display = 'none';
-            }
+            document.getElementById('position-group').style.display = this.value === 'staff' ? 'block' : 'none';
         });
     </script>
 </body>

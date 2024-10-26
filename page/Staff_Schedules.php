@@ -1,6 +1,7 @@
 <?php
 session_start();
-// Database connection setup (adjust credentials as necessary)
+
+// Database connection setup
 $host = 'localhost';
 $db = 'staff_availability_system';
 $user = 'root';
@@ -10,14 +11,15 @@ $charset = 'utf8mb4';
 if (isset($_POST['sign_out'])) {
     session_unset();
     session_destroy();
-    header("Location: index.php"); // Redirect to login/registration page after sign out
+    header("Location: index.php");
     exit();
 }
+
 $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
 $options = [
-    PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
+    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
     PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-    PDO::ATTR_EMULATE_PREPARES   => false,
+    PDO::ATTR_EMULATE_PREPARES => false,
 ];
 
 try {
@@ -39,7 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = $_SESSION['login-email'];
 
     // Debug: Check if appointment time is being received
-    echo "Time submitted: " . $appointmentTime . "<br>";
+    echo "Time submitted: " . htmlspecialchars($appointmentTime) . "<br>";
 
     // Find the staff ID based on the name
     $staffQuery = $pdo->prepare("SELECT id FROM staff WHERE name = ?");
@@ -47,8 +49,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $staffId = $staffQuery->fetchColumn();
 
     // Find the student ID based on the session email
-    $studentQuery = $pdo->prepare("SELECT id FROM users WHERE email = ?");
-    $studentQuery->execute([$email]);
+    $studentQuery = $pdo->prepare("SELECT id FROM users WHERE full_name = ?");
+    $studentQuery->execute([$requestedBy]);
     $studentID = $studentQuery->fetchColumn();
 
     // Insert the appointment into the database
@@ -96,10 +98,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <h1>Staff Availability System</h1>
                 <nav>
                     <ul class="a" id="dropdown-content">
-                        <li><a href="home1.php">Homepage</a></li>
-                        <li><a href="Staff_Directory.php">Staff Directory</a></li>
-                        <li><a href="Staff_Schedules.php">Staff Schedules</a></li>
-                        <li><a href="Appointment_Management.php">Appointment Details</a></li>
+                        <li><a href="home1.php">Home</a></li>
+                        <li><a href="Staff_Directory.php">Staff</a></li>
+                        <li><a href="Staff_Schedules.php">Schedules</a></li>
+                        <li><a href="Appointment_Management.php">Appointment</a></li>
                         <li><a href="About_Us_Page.php">About</a></li>
                         <li><a href="Contact_Us_Page.php">Contact Us</a></li>
                     </ul>

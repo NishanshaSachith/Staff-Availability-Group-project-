@@ -37,11 +37,11 @@ if (isset($_POST['sign_out'])) {
             </div>
             <h1>Staff Availability System</h1>
             <nav>
-                <ul class="a" id="dropdown-content">
-                    <li><a href="Home1.php">Homepage</a></li>
-                    <li><a href="Staff_Directory.php">Staff Directory</a></li>
-                    <li><a href="Staff_Schedules.php">Staff Schedules</a></li>
-                    <li><a href="Appointment_Management.php">Appointment Details</a></li>
+            <ul class="a" id="dropdown-content">
+                    <li><a href="home1.php">Home</a></li>
+                    <li><a href="Staff_Directory.php">Staff</a></li>
+                    <li><a href="Staff_Schedules.php">Schedules</a></li>
+                    <li><a href="Appointment_Management.php">Appointment</a></li>
                     <li><a href="About_Us_Page.php">About</a></li>
                     <li><a href="Contact_Us_Page.php">Contact Us</a></li>
                 </ul>
