@@ -4,10 +4,19 @@ session_start();
 // Error reporting for debugging
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
-
-// Check if user is already logged in
 if (isset($_SESSION['welcome_message'])) {
-    header("Location: home1.php");
+    // Make sure $role is set, probably from session or database
+    if (isset($_SESSION['role'])) {
+        $role = $_SESSION['role'];
+    } else {
+        $role = ''; // Handle cases where role is not set
+    }
+
+    if ($role === 'staff') {
+        header("Location: Homeadmin.php");
+    } else {
+        header("Location: home1.php");
+    }
     exit();
 }
 
@@ -42,37 +51,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['register'])) {
                     $stmt = $pdo->prepare("INSERT INTO staff (name, position, email) VALUES (?, ?, ?)");
                     $stmt->execute([$name, $position, $email]);
                 }
-
+                // If user is student, insert into student table
+                if ($role === 'student') {
+                    $stmt = $pdo->prepare("INSERT INTO students (name, email) VALUES (?, ?)");
+                    $stmt->execute([$name, $email]);
+                }
                 // Redirect to home page with a welcome message
                 $_SESSION['welcome_message'] = "Welcome, $name! You have successfully registered.";
-                header("Location: home1.php");
+                header("Location: login.php");
                 exit();
             } else {
                 echo "<script>alert('Registration failed!');</script>";
                 error_log("Registration failed for email: $email");
             }
         }
-    }
-}
-
-// Handle User Login
-if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['login'])) {
-    $email = trim($_POST['login-email']);
-    $password = $_POST['login-password'];
-
-    // Prepare and execute login query for users
-    $stmt = $pdo->prepare("SELECT * FROM users WHERE email = ?");
-    $stmt->execute([$email]);
-    $user = $stmt->fetch(PDO::FETCH_ASSOC);
-
-    if ($user && password_verify($password, $user['password'])) {
-        // Login successful
-        $_SESSION['welcome_message'] = "Login successful! Welcome, " . htmlspecialchars($user['full_name']) . ".";
-        // Redirect to home page
-        header("Location: home1.php"); // Redirect to your home page
-        exit();
-    } else {
-        echo "<script>alert('Invalid email or password!');</script>";
     }
 }
 
@@ -88,12 +80,35 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['admin_login'])) {
 
     if ($staff && password_verify($password, $staff['password'])) {
         $_SESSION['admin'] = true; // Set a session variable for admin access
-        header("Location: homeadmin.php"); // Redirect to admin home page
+        header("Location: Homeadmin.php");
         exit();
     } else {
         echo "<script>alert('Invalid admin email or password!');</script>";
     }
 }
+
+// Handle User Login
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['login'])) {
+    $email = trim($_POST['login-email']);
+    $password = $_POST['login-password'];
+
+    // Prepare and execute login query for students
+    $stmt = $pdo->prepare("SELECT * FROM users WHERE email = ? AND role = 'student'");
+    $stmt->execute([$email]);
+    $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if ($user && password_verify($password, $user['password'])) {
+        // Login successful
+        $_SESSION['welcome_message'] = "Login successful! Welcome, " . htmlspecialchars($user['full_name']) . ".";
+        header("Location: home1.php");
+        exit();
+    } else {
+        echo "<script>alert('Invalid email or password!');</script>";
+    }
+}
+
+
+
 ?>
 
 <!DOCTYPE html>
@@ -145,13 +160,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['admin_login'])) {
                     <div class="input-group">
                         <label for="register-role">Role</label>
                         <select name="register-role" id="register-role" required>
+                            <option value="">Select One</option>
                             <option value="staff">Staff</option>
                             <option value="student">Student</option>
                         </select>
                     </div>
                     <div class="input-group" id="position-group" style="display:none;">
                         <label for="register-position">Position</label>
-                        <input type="text" name="register-position" id="register-position">
+                        <select name="register-position" id="register-position">
+                            <option value="Lecturer">Lecturer</option>
+                            <option value="Academic Support Staff">Academic Support Staff</option>
+                            <option value="Administrative Staff">Administrative Staff</option>
+                        </select>
                     </div>
                     <button type="submit" name="register" class="auth-btn">Register</button>
                 </form>
@@ -181,12 +201,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['admin_login'])) {
                         <label for="admin-password">Password</label>
                         <input type="password" name="admin-password" id="admin-password" required>
                     </div>
-                    <button type="submit" name="admin_login" class="auth-btn">Login</button>
+                    <button type="submit" name="admin_login" class="auth-btn">Staff Login</button>
                 </form>
             </div>
         </div>
     </section>
-
     <footer>
         <p>&copy; 2024 Computer Science Department. All rights reserved.</p>
     </footer>
@@ -197,7 +216,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['admin_login'])) {
             document.getElementById('loginForm').classList.remove('hidden');
             document.getElementById('registerForm').classList.add('hidden');
             document.getElementById('adminLoginForm').classList.add('hidden');
-            // Set active tab
             setActiveTab('loginTab');
         }
 
@@ -206,7 +224,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['admin_login'])) {
             document.getElementById('loginForm').classList.add('hidden');
             document.getElementById('registerForm').classList.remove('hidden');
             document.getElementById('adminLoginForm').classList.add('hidden');
-            // Set active tab
             setActiveTab('registerTab');
         }
 
@@ -215,22 +232,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['admin_login'])) {
             document.getElementById('loginForm').classList.add('hidden');
             document.getElementById('registerForm').classList.add('hidden');
             document.getElementById('adminLoginForm').classList.remove('hidden');
-            // Set active tab
             setActiveTab('adminLoginTab');
         }
 
-        // Function to set active tab style
-        function setActiveTab(activeTabId) {
+        // Function to set the active tab styling
+        function setActiveTab(tabId) {
             const tabs = document.querySelectorAll('.tab');
             tabs.forEach(tab => {
                 tab.classList.remove('active');
             });
-            document.getElementById(activeTabId).classList.add('active');
+            document.getElementById(tabId).classList.add('active');
         }
 
-        // Show position input if staff role is selected
+        // Show/hide position selection based on role
         document.getElementById('register-role').addEventListener('change', function() {
-            document.getElementById('position-group').style.display = this.value === 'staff' ? 'block' : 'none';
+            const positionGroup = document.getElementById('position-group');
+            positionGroup.style.display = this.value === 'staff' ? 'block' : 'none';
         });
     </script>
 </body>
