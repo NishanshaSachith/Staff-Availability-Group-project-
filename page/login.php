@@ -46,16 +46,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['register'])) {
             // Prepare and execute registration query
             $stmt = $pdo->prepare("INSERT INTO users (full_name, email, password, role) VALUES (?, ?, ?, ?)");
             if ($stmt->execute([$name, $email, $password, $role])) {
+                // Get the last inserted user ID
+                $userId = $pdo->lastInsertId();
+
                 // If user is staff, insert into staff table
                 if ($role === 'staff' && $position) {
                     $stmt = $pdo->prepare("INSERT INTO staff (name, position, email) VALUES (?, ?, ?)");
                     $stmt->execute([$name, $position, $email]);
                 }
+                
                 // If user is student, insert into student table
                 if ($role === 'student') {
-                    $stmt = $pdo->prepare("INSERT INTO students (name, email) VALUES (?, ?)");
-                    $stmt->execute([$name, $email]);
+                    $stmt = $pdo->prepare("INSERT INTO students (name, email, user_id) VALUES (?, ?, ?)");
+                    $stmt->execute([$name, $email, $userId]); // Insert the user ID
                 }
+
                 // Redirect to home page with a welcome message
                 $_SESSION['welcome_message'] = "Welcome, $name! You have successfully registered.";
                 header("Location: login.php");
