@@ -12,7 +12,7 @@ if (isset($_POST['sign_out'])) {
 $servername = "localhost";
 $username = "root"; // Change this to your DB username
 $password = ""; // Change this to your DB password
-$dbname = "staff_availability_system";
+$dbname = "group6";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 
