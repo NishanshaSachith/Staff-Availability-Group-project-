@@ -3,7 +3,7 @@ session_start();
 
 // Database connection setup
 $host = 'localhost';
-$db = 'staff_availability_system';
+$db = 'group6';
 $user = 'root';
 $pass = '';
 $charset = 'utf8mb4';
