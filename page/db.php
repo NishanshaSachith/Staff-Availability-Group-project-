@@ -1,7 +1,7 @@
 <?php
 // Database connection configuration
 $host = 'localhost'; // Database host
-$db = 'staff_availability_system'; // Replace with your actual database name
+$db = 'group6'; // Replace with your actual database name
 $user = 'root'; // Replace with your actual database username
 $pass = ''; // Replace with your actual database password
 $charset = 'utf8mb4'; // Character set for database connection
