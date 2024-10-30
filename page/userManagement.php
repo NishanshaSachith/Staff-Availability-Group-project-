@@ -7,7 +7,7 @@ ini_set('display_errors', 1);
 $servername = "localhost";
 $username = "root";
 $password = "";
-$database = "staff_availability_system";
+$database = "group6";
 $conn = new mysqli($servername, $username, $password, $database);
 
 // Check the connection
