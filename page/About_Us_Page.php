@@ -19,7 +19,7 @@
 $servername = "localhost"; // Update if your server is different
 $username = "root"; // Replace with your database username
 $password = ""; // Replace with your database password
-$dbname = "staff_availability_system";
+$dbname = "group6";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 
