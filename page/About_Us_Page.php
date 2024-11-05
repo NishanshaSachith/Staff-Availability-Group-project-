@@ -157,33 +157,33 @@ $conn->close();
                 </p>
                 <div class="team-grid">
                     <div class="team-card">
-                        <img src="../media/bussiness-man.png" alt="Nishansha">
+                        <img src="../media/bussiness-man.png" alt="nishansha">
                         <h4>Nishansha Sachith</h4>
                         <p>Lead Developer</p>
                     </div>
                     <div class="team-card">
-                        <img src="../media/bussiness-man.png" alt="K.A.A.Lakmal">
-                        <h4>K.A.A.Lakmal</h4>
+                        <img src="../media/bussiness-man.png" alt="Mark Admin">
+                        <h4>Mark Evans</h4>
                         <p>System Administrator</p>
                     </div>
                     <div class="team-card">
-                        <img src="../media/bussiness-man.png" alt="L.Thuvarakan">
-                        <h4>L.Thuvarakan</h4>
+                        <img src="../media/bussiness-man.png" alt="Lisa Designer">
+                        <h4>Lisa Kim</h4>
                         <p>UI/UX Designer</p>
                     </div>
                     <div class="team-card">
-                        <img src="../media/girl.png" alt="Kujinsika.S">
-                        <h4>Kujinsika.S</h4>
+                        <img src="../media/girl.png" alt="nishansha">
+                        <h4>Girl 1</h4>
                         <p>Lead Developer</p>
                     </div>
                     <div class="team-card">
-                        <img src="../media/bussiness-man.png" alt="D.M.G.L.Thilakarathna">
-                        <h4>D.M.G.L.Thilakarathna</h4>
+                        <img src="../media/bussiness-man.png" alt="Mark Admin">
+                        <h4>edx</h4>
                         <p>System Administrator</p>
                     </div>
                     <div class="team-card">
-                        <img src="../media/girl.png" alt="L.W.R.Tharushi">
-                        <h4>L.W.R.Tharushi</h4>
+                        <img src="../media/girl.png" alt="Lisa Designer">
+                        <h4>Girl 2</h4>
                         <p>UI/UX Designer</p>
                     </div>
                 </div>
