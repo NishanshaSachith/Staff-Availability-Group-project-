@@ -33,7 +33,7 @@ if (isset($_POST['sign_out'])) {
     <header class="header" id="header">
         <div class="navbar">
             <div class="logo">
-                <img src="../media/department-logo.png" alt="Department Logo" />
+            <a href="Homeadmin.php"><img src="../media/department-logo.png" alt="Department Logo" /></a>
             </div>
             <h1>Staff Availability System</h1>
             <nav>

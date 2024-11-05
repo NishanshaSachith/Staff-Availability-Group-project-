@@ -14,7 +14,7 @@
     <header class="header" id="header">
         <div class="navbar">
             <div class="logo">
-                <img src="../media/department-logo.png" alt="Department Logo" />
+            <a href="index.php"><img src="../media/department-logo.png" alt="Department Logo" /></a>
             </div>
             <h1>Staff Availability System</h1>
             <button type="button" class="login-btn" onclick="window.location.href='login.php'">Login</button>

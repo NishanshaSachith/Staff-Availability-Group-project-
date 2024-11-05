@@ -133,7 +133,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['login'])) {
     <header class="header">
         <div class="navbar">
             <div class="logo">
-                <img src="../media/department-logo.png" alt="Department Logo">
+            <a href="index.php"><img src="../media/department-logo.png" alt="Department Logo" /></a>
             </div>
             <h1>Staff Availability System</h1>
         </div>

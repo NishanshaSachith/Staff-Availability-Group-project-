@@ -46,13 +46,22 @@ if (isset($_POST['reschedule_appointment'])) {
     exit();
 }
 
+// Handle Delete Action
+if (isset($_POST['delete_appointment'])) {
+    $appointmentId = $_POST['appointment_id'];
+    $sql = "DELETE FROM appointments WHERE id = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("i", $appointmentId);
+    $stmt->execute();
+    header("Location: AppointmentManagement.php");
+    exit();
+}
+
 // Fetch booking history
 $bookingHistory = [];
-$sql = "SELECT a.appointment_date, a.appointment_time AS appointment_time, s.name AS staff_member, 
-               u.full_name AS requested_by, a.status 
+$sql = "SELECT a.id, a.appointment_date, a.appointment_time, s.name AS staff_member, a.status 
         FROM appointments a 
-        JOIN staff s ON a.staff_id = s.id 
-        JOIN users u ON a.student_id = u.id";
+        JOIN staff s ON a.staff_id = s.id";
 
 $result = $conn->query($sql);
 if ($result && $result->num_rows > 0) {
@@ -63,9 +72,9 @@ if ($result && $result->num_rows > 0) {
 
 // Fetch appointment requests
 $appointmentRequests = [];
-$sql = "SELECT a.id, a.appointment_date, a.appointment_time AS appointment_time, u.full_name AS requested_by 
-        FROM appointments a 
-        JOIN users u ON a.student_id = u.id";
+$sql = "SELECT a.id, a.appointment_date, a.appointment_time, s.name AS staff_member
+        FROM appointments a
+        JOIN staff s ON a.staff_id = s.id WHERE a.status = 'Pending'";
 
 $result = $conn->query($sql);
 if ($result && $result->num_rows > 0) {
@@ -95,7 +104,7 @@ $conn->close();
     <header class="header" id="header">
         <div class="navbar">
             <div class="logo">
-                <img src="../media/department-logo.png" alt="Department Logo" />
+                <a href="Homeadmin.php"><img src="../media/department-logo.png" alt="Department Logo" /></a>
             </div>
             <h1>Staff Availability System</h1>
             <nav>
@@ -129,6 +138,7 @@ $conn->close();
                             <th>Staff Member</th>
                             <th>Requested By</th>
                             <th>Status</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody id="booking-history-list">
@@ -137,8 +147,14 @@ $conn->close();
                                 <td><?php echo htmlspecialchars($item['appointment_date']); ?></td>
                                 <td><?php echo htmlspecialchars($item['appointment_time']); ?></td>
                                 <td><?php echo htmlspecialchars($item['staff_member']); ?></td>
-                                <td><?php echo htmlspecialchars($item['requested_by']); ?></td>
+                                <td></td>
                                 <td><?php echo htmlspecialchars($item['status']); ?></td>
+                                <td>
+                                    <form method="POST" style="display: inline;">
+                                        <input type="hidden" name="appointment_id" value="<?php echo $item['id']; ?>">
+                                        <button type="submit" name="delete_appointment" class="delete">Delete</button>
+                                    </form>
+                                </td>
                             </tr>
                         <?php endforeach; ?>
                     </tbody>
@@ -153,7 +169,7 @@ $conn->close();
                         <tr>
                             <th>Date</th>
                             <th>Time</th>
-                            <th>staff member</th>
+                            <th>Staff Member</th>
                             <th>Requested By</th>
                             <th>Action</th>
                         </tr>
@@ -163,8 +179,8 @@ $conn->close();
                             <tr>
                                 <td><?php echo htmlspecialchars($request['appointment_date']); ?></td>
                                 <td><?php echo htmlspecialchars($request['appointment_time']); ?></td>
-                                <td><?php echo htmlspecialchars($item['staff_member']); ?></td>
-                                <td><?php echo htmlspecialchars($request['requested_by']); ?></td>
+                                <td><?php echo htmlspecialchars($request['staff_member']); ?></td>
+                                <td></td>
                                 <td>
                                     <form method="POST" style="display: inline;">
                                         <input type="hidden" name="appointment_id" value="<?php echo $request['id']; ?>">
@@ -193,14 +209,6 @@ $conn->close();
                     </form>
                 </div>
             </div>
-
-            <!-- Notifications -->
-            <div class="section" id="notifications">
-                <h3>Notifications</h3>
-                <ul id="notification-list">
-                    <!-- Notifications will be dynamically loaded here -->
-                </ul>
-            </div>
         </div>
     </section>
 
@@ -225,7 +233,7 @@ $conn->close();
         window.onclick = function(event) {
             const modal = document.getElementById("rescheduleModal");
             if (event.target == modal) {
-                closeRescheduleModal();
+                modal.style.display = "none";
             }
         }
     </script>

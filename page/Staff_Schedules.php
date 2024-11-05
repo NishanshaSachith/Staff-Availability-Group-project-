@@ -25,43 +25,12 @@ $options = [
 try {
     $pdo = new PDO($dsn, $user, $pass, $options);
 } catch (\PDOException $e) {
-    throw new \PDOException($e->getMessage(), (int)$e->getCode());
+    die("Error connecting to the database: " . $e->getMessage());
 }
 
 // Fetch schedule data
 $scheduleQuery = "SELECT s.name, sa.start_time, sa.end_time FROM staff_availability sa JOIN staff s ON sa.staff_id = s.id";
 $scheduleResult = $pdo->query($scheduleQuery);
-
-// Handle form submission for booking appointments
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $requestedBy = $_POST['requested_by'];
-    $staffMember = $_POST['staff_member'];
-    $appointmentDate = $_POST['appointment_date'];
-    $appointmentTime = $_POST['appointment_time'];
-    $email = $_SESSION['login-email'];
-
-    // Debug: Check if appointment time is being received
-    echo "Time submitted: " . htmlspecialchars($appointmentTime) . "<br>";
-
-    // Find the staff ID based on the name
-    $staffQuery = $pdo->prepare("SELECT id FROM staff WHERE name = ?");
-    $staffQuery->execute([$staffMember]);
-    $staffId = $staffQuery->fetchColumn();
-
-    // Find the student ID based on the session email
-    $studentQuery = $pdo->prepare("SELECT id FROM users WHERE full_name = ?");
-    $studentQuery->execute([$requestedBy]);
-    $studentID = $studentQuery->fetchColumn();
-
-    // Insert the appointment into the database
-    $insertQuery = $pdo->prepare("INSERT INTO appointments (staff_id, student_id, appointment_date, appointment_time) VALUES (?, ?, ?, ?)");
-    if (!$insertQuery->execute([$staffId, $studentID, $appointmentDate, $appointmentTime])) {
-        // Debug: Show SQL errors
-        print_r($insertQuery->errorInfo());
-    } else {
-        $bookingMessage = "Appointment booked successfully!";
-    }
-}
 ?>
 
 <!DOCTYPE html>
@@ -93,7 +62,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <header class="header" id="header">
             <div class="navbar">
                 <div class="logo">
-                    <img src="../media/department-logo.png" alt="Department Logo" />
+                    <a href="home1.php"><img src="../media/department-logo.png" alt="Department Logo" /></a>
                 </div>
                 <h1>Staff Availability System</h1>
                 <nav>
@@ -139,20 +108,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             <div class="booking-system">
                 <h3>Book an Appointment</h3>
-                <form id="bookingForm" action="" method="POST">
+                <form id="bookingForm" action="book_appointment.php" method="POST">
                     <label for="requestedBy">Requested By:</label>
                     <input type="text" id="requestedBy" name="requested_by" required placeholder="Your Name">
 
                     <label for="staffSelect">Select Staff Member:</label>
                     <select id="staffSelect" name="staff_member" required>
                         <?php
-                        try {
-                            $stmt = $pdo->query("SELECT name FROM staff");
-                            while ($row = $stmt->fetch()) {
-                                echo "<option value=\"" . htmlspecialchars($row['name']) . "\">" . htmlspecialchars($row['name']) . "</option>";
-                            }
-                        } catch (PDOException $e) {
-                            echo "<option value=\"\">Unable to load staff members</option>";
+                        $stmt = $pdo->query("SELECT name FROM staff");
+                        while ($row = $stmt->fetch()) {
+                            echo "<option value=\"" . htmlspecialchars($row['name']) . "\">" . htmlspecialchars($row['name']) . "</option>";
                         }
                         ?>
                     </select>

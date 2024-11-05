@@ -30,6 +30,7 @@ try {
 
 // Handle form submission for booking appointments
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
     $requestedBy = $_POST['requested_by'];
     $staffMember = $_POST['staff_member'];
     $appointmentDate = $_POST['appointment_date'];
@@ -44,13 +45,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $staffId = $staffQuery->fetchColumn();
 
     // Find the student ID based on the session email
-    $studentQuery = $pdo->prepare("SELECT id FROM users WHERE full_name = ?");
-    $studentQuery->execute([$requestedBy]);
-    $studentID = $studentQuery->fetchColumn();
+    // $studentQuery = $pdo->prepare("SELECT id FROM students WHERE name = ?");
+    // $studentQuery->execute([$requestedBy]);
+    // $studentID = $studentQuery->fetchColumn();
+
 
     // Insert the appointment into the database
     $insertQuery = $pdo->prepare("INSERT INTO appointments (staff_id, student_id, appointment_date, appointment_time) VALUES (?, ?, ?, ?)");
-    if (!$insertQuery->execute([$staffId, $studentID, $appointmentDate, $appointmentTime])) {
+    if (!$insertQuery->execute([$staffId, $_POST['requested_by'], $appointmentDate, $appointmentTime])) {
         // Debug: Show SQL errors
         print_r($insertQuery->errorInfo());
     } else {
@@ -76,7 +78,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <header class="header" id="header">
             <div class="navbar">
                 <div class="logo">
-                    <img src="../media/department-logo.png" alt="Department Logo" />
+                <a href="home1.php"><img src="../media/department-logo.png" alt="Department Logo" /></a>
                 </div>
                 <h1>Appointment Booking System</h1>
                 <nav>

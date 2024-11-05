@@ -49,12 +49,10 @@ if (isset($_POST['reschedule_appointment'])) {
 
 // Fetch booking history
 $bookingHistory = [];
-$sql = "SELECT a.appointment_date, a.appointment_time AS appointment_time, s.name AS staff_member, 
-               u.full_name AS requested_by, a.status 
+$sql = "SELECT a.appointment_date, a.appointment_time AS appointment_time, s.name AS staff_member, a.status 
         FROM appointments a 
-        JOIN staff s ON a.staff_id = s.id 
-        JOIN users u ON a.student_id = u.id";
-
+        JOIN staff s ON a.staff_id = s.id"; 
+        
 $result = $conn->query($sql);
 if ($result && $result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
@@ -64,7 +62,7 @@ if ($result && $result->num_rows > 0) {
 
 // Fetch appointment requests
 $appointmentRequests = [];
-$sql = "SELECT a.id, a.appointment_date, a.appointment_time AS appointment_time, u.full_name AS requested_by 
+$sql = "SELECT a.id, a.appointment_date, a.appointment_time AS appointment_time
         FROM appointments a 
         JOIN users u ON a.student_id = u.id";
 
@@ -96,7 +94,7 @@ $conn->close();
     <header class="header" id="header">
         <div class="navbar">
             <div class="logo">
-                <img src="../media/department-logo.png" alt="Department Logo" />
+            <a href="home1.php"><img src="../media/department-logo.png" alt="Department Logo" /></a>
             </div>
             <h1>Staff Availability System</h1>
             <nav>
@@ -138,7 +136,7 @@ $conn->close();
                                 <td><?php echo htmlspecialchars($item['appointment_date']); ?></td>
                                 <td><?php echo htmlspecialchars($item['appointment_time']); ?></td>
                                 <td><?php echo htmlspecialchars($item['staff_member']); ?></td>
-                                <td><?php echo htmlspecialchars($item['requested_by']); ?></td>
+                                <td></td>
                                 <td><?php echo htmlspecialchars($item['status']); ?></td>
                             </tr>
                         <?php endforeach; ?>
@@ -148,12 +146,11 @@ $conn->close();
 
         
             <!-- Notifications -->
-            <div class="section" id="notifications">
-                <h3>Notifications</h3>
-                <ul id="notification-list">
+            <!-- <div class="section" id="notifications"> -->
+                <!-- <h3>Notifications</h3> -->
+                <!-- <ul id="notification-list"> -->
                     <!-- Notifications will be dynamically loaded here -->
-                </ul>
-            </div>
+                <!-- </ul>/ -->
         </div>
     </section>
 
