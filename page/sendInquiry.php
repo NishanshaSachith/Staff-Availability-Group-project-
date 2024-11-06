@@ -2,8 +2,8 @@
 // Database connection settings
 $host = 'localhost'; // Your database host
 $db_name = 'group6'; // Your database name
-$username = 'root'; // Your database username
-$password = ''; // Your database password
+$username = 'csc210user'; // Your database username
+$password = 'CSC210!'; // Your database password
 
 // Create connection
 $conn = new mysqli($host, $username, $password, $db_name);
