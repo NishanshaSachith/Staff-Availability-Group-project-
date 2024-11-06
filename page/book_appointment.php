@@ -2,10 +2,10 @@
 session_start();
 
 // Database connection setup
-$host = 'localhost';
-$db = 'group6';
-$user = 'root';
-$pass = '';
+$servername = "localhost"; // Update if your server is different
+$username = "csc210user"; // Replace with your database username
+$password = "CSC210!"; // Replace with your database password
+$dbname = "group6";
 $charset = 'utf8mb4';
 
 if (isset($_POST['sign_out'])) {
