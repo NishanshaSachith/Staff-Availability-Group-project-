@@ -9,9 +9,9 @@ if (isset($_POST['sign_out'])) {
 }
 
 // Database connection
-$servername = "localhost";
-$username = "root"; // Change this to your DB username
-$password = ""; // Change this to your DB password
+$servername = "localhost"; // Update if your server is different
+$username = "csc210user"; // Replace with your database username
+$password = "CSC210!"; // Replace with your database password
 $dbname = "group6";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
