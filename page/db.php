@@ -2,8 +2,8 @@
 // Database connection configuration
 $host = 'localhost'; // Database host
 $db = 'group6'; // Replace with your actual database name
-$user = 'root'; // Replace with your actual database username
-$pass = ''; // Replace with your actual database password
+$user = 'csc210user'; // Replace with your actual database username
+$pass = 'CSC210!'; // Replace with your actual database password
 $charset = 'utf8mb4'; // Character set for database connection
 
 // Data Source Name (DSN)
