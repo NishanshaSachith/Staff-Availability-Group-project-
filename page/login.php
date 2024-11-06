@@ -105,7 +105,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['login'])) {
     if ($user && password_verify($password, $user['password'])) {
         // Login successful
         $_SESSION['welcome_message'] = "Login successful! Welcome, " . htmlspecialchars($user['full_name']) . ".";
-        header("Location: home1.php");
+        header("Location: Home1.php");
         exit();
     } else {
         echo "<script>alert('Invalid email or password!');</script>";
