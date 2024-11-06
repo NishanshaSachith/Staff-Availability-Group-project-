@@ -15,7 +15,7 @@ if (isset($_SESSION['welcome_message'])) {
     if ($role === 'staff') {
         header("Location: Homeadmin.php");
     } else {
-        header("Location: home1.php");
+        header("Location: Home1.php");
     }
     exit();
 }
