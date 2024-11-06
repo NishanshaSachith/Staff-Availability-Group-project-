@@ -109,7 +109,7 @@ $conn->close();
             <h1>Staff Availability System</h1>
             <nav>
                 <ul class="nav-list" id="dropdown-content">
-                    <li><a href="homeadmin.php">Home</a></li>
+                    <li><a href="Homeadmin.php">Home</a></li>
                     <li><a href="AppointmentManagement.php">Appointment</a></li>
                     <li><a href="userManagement.php">User</a></li>
                     <li><a href="staffManagement.php">Staff</a></li>
