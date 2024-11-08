@@ -1,7 +1,7 @@
 <?php
 	$server_name = "localhost";
-	$username = "root";
-	$server_password = "";
+	$username = "csc210user";
+	$server_password = "CSC210!";
 	$data_base = "group6";
 
 	try{
