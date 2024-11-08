@@ -55,11 +55,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['register'])) {
                     $stmt = $pdo->prepare("INSERT INTO staff (name, position, email) VALUES (?, ?, ?)");
                     $stmt->execute([$name, $position, $email]);
                 }
-                
+                $student_number = 0;
                 // If user is student, insert into student table
                 if ($role === 'student') {
-                    $stmt = $pdo->prepare("INSERT INTO students (name, email, user_id) VALUES (?, ?, ?)");
-                    $stmt->execute([$name, $email, $userId]); // Insert the user ID
+                    $stmt = $pdo->prepare("INSERT INTO students (name, email, user_id, student_number) VALUES (?, ?, ?, ?)");
+                    $stmt->execute([$name, $email, $userId,$student_number]); // Insert the user ID
                 }
 
                 // Redirect to home page with a welcome message
