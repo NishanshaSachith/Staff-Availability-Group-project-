@@ -94,7 +94,7 @@ $scheduleResult = $pdo->query($scheduleQuery);
         <header class="header" id="header">
             <div class="navbar">
                 <div class="logo">
-                    <a href="home1.php"><img src="../media/department-logo.png" alt="Department Logo" /></a>
+                    <a href="Home1.php"><img src="../media/department-logo.png" alt="Department Logo" /></a>
                 </div>
                 <h1>Staff Availability System</h1>
                 <nav>
