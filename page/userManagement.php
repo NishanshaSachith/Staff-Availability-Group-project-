@@ -174,7 +174,7 @@ $userResult = $conn->query($userQuery);
     <?php endwhile; ?>
 </table>
 <footer>
-    <p>&copy; 2024 Computer Science Department. All rights reserved.</p>
+    <p>&copy; 2024 Department Of Computer Science. All rights reserved.</p>
 </footer>
 </body>
 </html>
