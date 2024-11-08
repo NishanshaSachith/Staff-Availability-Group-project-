@@ -91,7 +91,7 @@ if (isset($_POST['sign_out'])) {
     </section>
 
     <footer>
-        <p>&copy; 2024 Department Of Computer Sciencet. All rights reserved.</p>
+        <p>&copy; 2024 Department Of Computer Science. All rights reserved.</p>
     </footer>
     
     <script defer src="scriptStaff_Directory.js"></script>
