@@ -45,7 +45,7 @@ if (isset($_POST['sign_out'])) {
     header("Location: index.php");
     exit();
 }
-
+/*
 $dsn = "mysql:host=$host;dbname=$db,charset=$charset";
 $options = [
     PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
@@ -57,10 +57,10 @@ try {
     $pdo = new PDO($dsn, $user, $pass, $options);
 } catch (\PDOException $e) {
     die("Error connecting to the database: " . $e->getMessage());
-
+*/
 // Fetch schedule data
 $scheduleQuery = "SELECT s.name, sa.start_time, sa.end_time FROM staff_availability sa JOIN staff s ON sa.staff_id = s.id";
-$scheduleResult = $pdo->query($scheduleQuery);
+$scheduleResult = mysqli_query($conn,$$scheduleQuery);
 
 ?>
 
@@ -116,14 +116,14 @@ $scheduleResult = $pdo->query($scheduleQuery);
             <h2>Staff Availability Calendar (Today)</h2>
             <div class="calendar">
                 <div class="calendar-body">
-                    <?php if ($scheduleResult->rowCount() > 0): ?>
+                    
                         <table class="schedule-table" id="tal">
                             <tr>
                                 <th>Staff</th>
                                 <th>Available From</th>
                                 <th>Available To</th>
                             </tr>
-                            <?php while ($row = $scheduleResult->fetch()): ?>
+                            <?php while ($row = mysqli_fetch_assoc($scheduleResult)): ?>
                                 <tr>
                                     <td><?php echo htmlspecialchars($row['name']); ?></td>
                                     <td><?php echo htmlspecialchars($row['start_time']); ?></td>
@@ -133,7 +133,7 @@ $scheduleResult = $pdo->query($scheduleQuery);
                         </table>
                     <?php else: ?>
                         <p>No schedules available.</p>
-                    <?php endif; ?>
+                    
                 </div>
             </div>
 
