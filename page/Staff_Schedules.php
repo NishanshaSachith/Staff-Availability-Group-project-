@@ -60,7 +60,7 @@ try {
 */
 // Fetch schedule data
 $scheduleQuery = "SELECT s.name, sa.start_time, sa.end_time FROM staff_availability sa JOIN staff s ON sa.staff_id = s.id";
-$scheduleResult = mysqli_query($conn,$$scheduleQuery);
+$scheduleResult = mysqli_query($conn,$scheduleQuery);
 
 ?>
 
