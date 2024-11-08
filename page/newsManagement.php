@@ -156,7 +156,7 @@ $newsResult = $conn->query($newsQuery);
     <?php endwhile; ?>
 </table><center>
 <footer>
-    <p>&copy; 2024 Computer Science Department. All rights reserved.</p>
+    <p>&copy; 2024 Department Of Computer Science. All rights reserved.</p>
 </footer>
 </body>
 </html>
