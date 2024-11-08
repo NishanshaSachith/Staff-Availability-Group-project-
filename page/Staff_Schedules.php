@@ -31,12 +31,12 @@ if (isset($_POST['book'])){
     $query3 = "INSERT INTO appointments (staff_id,staff_name, student_id, appointment_date, appointment_time) VALUES ('$staff_id', '$staffMember','$student_id', '$appointmentDate', '$appointmentTime')";
     mysqli_query($conn,$query3);
 }
-// Database connection
-$servername = "localhost"; // Update if your server is different
-$username = "csc210user"; // Replace with your database username
-$password = "CSC210!"; // Replace with your database password
-$dbname = "group6";
+$host = 'localhost';
+$db = 'group6';
+$user = 'root';
+$pass = '';
 $charset = 'utf8mb4';
+
 
 
 if (isset($_POST['sign_out'])) {
@@ -45,8 +45,8 @@ if (isset($_POST['sign_out'])) {
     header("Location: index.php");
     exit();
 }
-/*
-$dsn = "mysql:host=$host;dbname=$db,charset=$charset";
+
+$dsn = "mysql:host=$host;dbname=$db;charset=$charset";
 $options = [
     PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
     PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
@@ -57,10 +57,11 @@ try {
     $pdo = new PDO($dsn, $user, $pass, $options);
 } catch (\PDOException $e) {
     die("Error connecting to the database: " . $e->getMessage());
-*/
+}
+
 // Fetch schedule data
 $scheduleQuery = "SELECT s.name, sa.start_time, sa.end_time FROM staff_availability sa JOIN staff s ON sa.staff_id = s.id";
-$scheduleResult = mysqli_query($conn,$scheduleQuery);
+$scheduleResult = $pdo->query($scheduleQuery);
 
 ?>
 
@@ -93,12 +94,12 @@ $scheduleResult = mysqli_query($conn,$scheduleQuery);
         <header class="header" id="header">
             <div class="navbar">
                 <div class="logo">
-                    <a href="Home1.php"><img src="../media/department-logo.png" alt="Department Logo" /></a>
+                    <a href="home1.php"><img src="../media/department-logo.png" alt="Department Logo" /></a>
                 </div>
                 <h1>Staff Availability System</h1>
                 <nav>
                     <ul class="a" id="dropdown-content">
-                        <li><a href="Home1.php">Home</a></li>
+                        <li><a href="home1.php">Home</a></li>
                         <li><a href="Staff_Directory.php">Staff</a></li>
                         <li><a href="Staff_Schedules.php">Schedules</a></li>
                         <li><a href="Appointment_Management.php">Appointment</a></li>
@@ -116,14 +117,14 @@ $scheduleResult = mysqli_query($conn,$scheduleQuery);
             <h2>Staff Availability Calendar (Today)</h2>
             <div class="calendar">
                 <div class="calendar-body">
-                    
+                    <?php if ($scheduleResult->rowCount() > 0): ?>
                         <table class="schedule-table" id="tal">
                             <tr>
                                 <th>Staff</th>
                                 <th>Available From</th>
                                 <th>Available To</th>
                             </tr>
-                            <?php while ($row = mysqli_fetch_assoc($scheduleResult)): ?>
+                            <?php while ($row = $scheduleResult->fetch()): ?>
                                 <tr>
                                     <td><?php echo htmlspecialchars($row['name']); ?></td>
                                     <td><?php echo htmlspecialchars($row['start_time']); ?></td>
@@ -133,7 +134,7 @@ $scheduleResult = mysqli_query($conn,$scheduleQuery);
                         </table>
                     <?php else: ?>
                         <p>No schedules available.</p>
-                    
+                    <?php endif; ?>
                 </div>
             </div>
 
@@ -173,7 +174,7 @@ $scheduleResult = mysqli_query($conn,$scheduleQuery);
         </section>
     </center>
     <footer>
-        <p>&copy; 2024 Department Of Computer Science. All rights reserved.</p>
+        <p>&copy; 2024 Computer Science Department. All rights reserved.</p>
     </footer>
 </body>
 </html>
