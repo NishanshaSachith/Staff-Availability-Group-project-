@@ -47,17 +47,16 @@ if (isset($_POST['sign_out'])) {
 }
 
 $dsn = "mysql:host=$host;dbname=$db";
-$options = [
+/*$options = [
     PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
     PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
     PDO::ATTR_EMULATE_PREPARES => false,
-];
+];*/
 
 try {
-    $pdo = new PDO($dsn, $user, $pass, $options);
+    $pdo = new PDO($dsn, $user, $pass);
 } catch (\PDOException $e) {
     die("Error connecting to the database: " . $e->getMessage());
-}
 
 // Fetch schedule data
 $scheduleQuery = "SELECT s.name, sa.start_time, sa.end_time FROM staff_availability sa JOIN staff s ON sa.staff_id = s.id";
