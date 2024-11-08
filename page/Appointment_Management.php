@@ -186,7 +186,7 @@ $conn->close();
     </section>
 
     <footer>
-        <p>&copy; 2024 Department of Computer Science. All rights reserved.</p>
+        <p>&copy; 2024 Department Of Computer Science. All rights reserved.</p>
     </footer>
 </body>
 </html>
