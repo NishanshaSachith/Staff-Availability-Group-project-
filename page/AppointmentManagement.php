@@ -58,10 +58,13 @@ if (isset($_POST['delete_appointment'])) {
 }
 
 // Fetch booking history
+// Fetch booking history
 $bookingHistory = [];
-$sql = "SELECT a.id, a.appointment_date, a.appointment_time, s.name AS staff_member, a.status 
+$sql = "SELECT a.id, a.appointment_date, a.appointment_time AS appointment_time, s.name AS staff_member, 
+               u.full_name AS requested_by, a.status 
         FROM appointments a 
-        JOIN staff s ON a.staff_id = s.id";
+        JOIN staff s ON a.staff_id = s.id 
+        JOIN users u ON a.student_id = u.id";
 
 $result = $conn->query($sql);
 if ($result && $result->num_rows > 0) {
@@ -72,9 +75,10 @@ if ($result && $result->num_rows > 0) {
 
 // Fetch appointment requests
 $appointmentRequests = [];
-$sql = "SELECT a.id, a.appointment_date, a.appointment_time, s.name AS staff_member
-        FROM appointments a
-        JOIN staff s ON a.staff_id = s.id WHERE a.status = 'Pending'";
+$sql = "SELECT a.id, a.appointment_date, a.appointment_time AS appointment_time, u.full_name AS requested_by, s.name AS staff_member 
+        FROM appointments a 
+        JOIN staff s ON a.staff_id = s.id
+        JOIN users u ON a.student_id = u.id WHERE a.status = 'Pending'";
 
 $result = $conn->query($sql);
 if ($result && $result->num_rows > 0) {
@@ -147,7 +151,7 @@ $conn->close();
                                 <td><?php echo htmlspecialchars($item['appointment_date']); ?></td>
                                 <td><?php echo htmlspecialchars($item['appointment_time']); ?></td>
                                 <td><?php echo htmlspecialchars($item['staff_member']); ?></td>
-                                <td></td>
+                                <td><?php echo htmlspecialchars($item['requested_by']); ?></td>
                                 <td><?php echo htmlspecialchars($item['status']); ?></td>
                                 <td>
                                     <form method="POST" style="display: inline;">
@@ -180,7 +184,7 @@ $conn->close();
                                 <td><?php echo htmlspecialchars($request['appointment_date']); ?></td>
                                 <td><?php echo htmlspecialchars($request['appointment_time']); ?></td>
                                 <td><?php echo htmlspecialchars($request['staff_member']); ?></td>
-                                <td></td>
+                                <td><?php echo htmlspecialchars($item['requested_by']); ?></td>
                                 <td>
                                     <form method="POST" style="display: inline;">
                                         <input type="hidden" name="appointment_id" value="<?php echo $request['id']; ?>">
