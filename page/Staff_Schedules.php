@@ -33,8 +33,8 @@ if (isset($_POST['book'])){
 }
 $host = 'localhost';
 $db = 'group6';
-$user = 'root';
-$pass = '';
+$user = 'csc210user';
+$pass = 'CSC210!';
 $charset = 'utf8mb4';
 
 
