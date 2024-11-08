@@ -27,6 +27,7 @@ include 'db.php'; // Ensure this path is correct based on your directory structu
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['register'])) {
     $name = trim($_POST['register-name']);
     $email = trim($_POST['register-email']);
+    $_SESSION['uniid']=$_POST['register-email'];
     $password = password_hash($_POST['register-password'], PASSWORD_BCRYPT);
     $role = $_POST['register-role'];
     $position = isset($_POST['register-position']) ? $_POST['register-position'] : null;
@@ -77,7 +78,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['register'])) {
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['admin_login'])) {
     $email = trim($_POST['admin-email']);
     $password = $_POST['admin-password'];
-
+    $_SESSION['uniid']=$_POST['admin-email'];
     // Check if admin credentials are correct against the users table
     $stmt = $pdo->prepare("SELECT * FROM users WHERE email = ? AND role = 'staff'");
     $stmt->execute([$email]);
@@ -96,7 +97,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['admin_login'])) {
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['login'])) {
     $email = trim($_POST['login-email']);
     $password = $_POST['login-password'];
-
+    $_SESSION['uniid']=$_POST['login-email'];
     // Prepare and execute login query for students
     $stmt = $pdo->prepare("SELECT * FROM users WHERE email = ? AND role = 'student'");
     $stmt->execute([$email]);
