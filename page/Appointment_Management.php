@@ -1,5 +1,13 @@
 <?php
 session_start();
+include('database.php');
+$n=$_SESSION['uniid'];
+$query4 = "SELECT * FROM users WHERE email = '$n'";
+   $status4 = mysqli_query($conn,$query4);
+	$result4 = mysqli_fetch_assoc($status4);
+    $user_name = $result4['full_name'];
+    $_SESSION['uniname']=$user_name;
+    
 // Handle Sign Out
 if (isset($_POST['sign_out'])) {
     session_unset();
@@ -48,8 +56,32 @@ if (isset($_POST['reschedule_appointment'])) {
 }
 
 // Fetch booking history
-$bookingHistory = [];
-$sql = "SELECT a.appointment_date, a.appointment_time AS appointment_time, s.name AS staff_member, a.status 
+$n=$_SESSION['uniid'];
+$query5= "SELECT * FROM users WHERE email = '$n'";
+$status5 = mysqli_query($conn,$query5);
+$result5 = mysqli_fetch_assoc($status5);
+$user_id = $result5['id'];
+
+
+$query1= "SELECT * FROM appointments WHERE student_id = '$user_id'";
+$status1 = mysqli_query($conn,$query1);
+//$result1 = mysqli_fetch_assoc($status1);
+
+//fetch data
+/*
+$staff_id = $result1['staff_id'];
+$appointment_date = $result1['appointment_date'];
+$appintment_time = $result1['appointment_time'];
+$status = $result1['status'];
+
+//fetch staff name
+$query2= "SELECT * FROM staff WHERE id = '$staff_id'";
+$status2 = mysqli_query($conn,$query2);
+$result2 = mysqli_fetch_assoc($status2);
+$staff_name = $result2['name'];
+$bookingHistory = array("appointment_date"=>$appointment_date,"appointment_time"=>$appintment_time,"staff_member"=>$staff_name,"status"=>$status);
+*/
+/*$sql = "SELECT a.appointment_date, a.appointment_time AS appointment_time, s.name AS staff_member, a.status 
         FROM appointments a 
         JOIN staff s ON a.staff_id = s.id"; 
         
@@ -58,7 +90,7 @@ if ($result && $result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
         $bookingHistory[] = $row;
     }
-}
+}*/
 
 // Fetch appointment requests
 $appointmentRequests = [];
@@ -126,20 +158,19 @@ $conn->close();
                             <th>Date</th>
                             <th>Time</th>
                             <th>Staff Member</th>
-                            <th>Requested By</th>
                             <th>Status</th>
                         </tr>
                     </thead>
                     <tbody id="booking-history-list">
-                        <?php foreach ($bookingHistory as $item): ?>
+                        <?php while($result=mysqli_fetch_assoc($status1)): ?>
                             <tr>
-                                <td><?php echo htmlspecialchars($item['appointment_date']); ?></td>
-                                <td><?php echo htmlspecialchars($item['appointment_time']); ?></td>
-                                <td><?php echo htmlspecialchars($item['staff_member']); ?></td>
-                                <td></td>
-                                <td><?php echo htmlspecialchars($item['status']); ?></td>
+                                
+                                <td><?php echo htmlspecialchars($result['appointment_date']); ?></td>
+                                <td><?php echo htmlspecialchars($result['appointment_time']); ?></td>
+                                <td><?php echo htmlspecialchars($result['staff_name']); ?></td>
+                                <td><?php echo htmlspecialchars($result['status']); ?></td>
                             </tr>
-                        <?php endforeach; ?>
+                        <?php endwhile; ?>
                     </tbody>
                 </table>
             </div>
@@ -155,7 +186,7 @@ $conn->close();
     </section>
 
     <footer>
-        <p>&copy; 2024 Computer Science Department. All rights reserved.</p>
+        <p>&copy; 2024 Department of Computer Science. All rights reserved.</p>
     </footer>
 </body>
 </html>
