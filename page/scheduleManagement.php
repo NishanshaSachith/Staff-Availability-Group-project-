@@ -195,7 +195,7 @@ $scheduleResult = $conn->query($scheduleQuery);
 </center>
 
 <footer>
-    <p>&copy; 2024 Staff Availability System. All rights reserved.</p>
+    <p>&copy; 2024 Department Of Computer Science. All rights reserved.</p>
 </footer>
 </body>
 </html>
