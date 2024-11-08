@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 30, 2024 at 02:57 PM
+-- Generation Time: Nov 08, 2024 at 09:54 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `staff_availability_system`
+-- Database: `group6`
 --
 
 -- --------------------------------------------------------
@@ -49,6 +49,7 @@ INSERT INTO `admins` (`id`, `user_id`, `access_level`) VALUES
 CREATE TABLE `appointments` (
   `id` int(11) NOT NULL,
   `staff_id` int(11) DEFAULT NULL,
+  `staff_name` varchar(225) NOT NULL,
   `student_id` int(11) DEFAULT NULL,
   `appointment_date` date NOT NULL,
   `status` enum('Pending','Confirmed','Canceled') DEFAULT 'Pending',
@@ -60,10 +61,11 @@ CREATE TABLE `appointments` (
 -- Dumping data for table `appointments`
 --
 
-INSERT INTO `appointments` (`id`, `staff_id`, `student_id`, `appointment_date`, `status`, `created_at`, `appointment_time`) VALUES
-(45, 14, 112, '2024-10-23', 'Confirmed', '2024-10-28 21:54:09', '21:57:00'),
-(46, 14, 112, '2024-10-28', 'Pending', '2024-10-28 21:55:29', '21:57:00'),
-(54, 14, 112, '2024-10-29', 'Pending', '2024-10-28 23:36:23', '17:00:00');
+INSERT INTO `appointments` (`id`, `staff_id`, `staff_name`, `student_id`, `appointment_date`, `status`, `created_at`, `appointment_time`) VALUES
+(59, 14, 'Dr. (Mrs). B. Mayurathan', 112, '2024-11-15', 'Confirmed', '2024-11-08 12:47:53', '14:46:00'),
+(63, 29, 'Mrs. B. Arani', 117, '2024-11-22', 'Confirmed', '2024-11-08 13:59:12', '16:59:00'),
+(64, 29, 'Mrs. B. Arani', 117, '2024-11-13', 'Confirmed', '2024-11-08 14:01:03', '18:04:00'),
+(65, 18, 'Dr. K. Thabotharan', 117, '2024-11-20', 'Confirmed', '2024-11-08 14:04:48', '18:04:00');
 
 -- --------------------------------------------------------
 
@@ -178,7 +180,8 @@ INSERT INTO `staff` (`id`, `name`, `position`, `office_location`, `email`, `phon
 (32, 'Mr. Y. Hajanthan', 'Administrative Staff', 'Room 15', 'yhajanthan@univ.jfn.ac.lk', '', 'Mon-fri: 8 AM - 4 PM', '2024-10-18 16:13:28'),
 (33, 'Mr. N. Thileepan', 'Administrative Staff', 'Room 15', 'nthileepan@univ.jfn.ac.lk', '', 'Mon-fri: 8 AM - 4 PM', '2024-10-18 16:13:47'),
 (94, 'sfatt', 'Lecturer', NULL, 'staff@gmail.com', NULL, NULL, '2024-10-29 13:01:57'),
-(95, 'staff2', 'Academic Support Staff', NULL, 'staff2@gmail.com', NULL, NULL, '2024-10-29 13:14:26');
+(95, 'staff2', 'Academic Support Staff', NULL, 'staff2@gmail.com', NULL, NULL, '2024-10-29 13:14:26'),
+(96, '123', 'Lecturer', NULL, '123@gmail.com', NULL, NULL, '2024-11-08 12:55:26');
 
 -- --------------------------------------------------------
 
@@ -271,7 +274,8 @@ INSERT INTO `users` (`id`, `full_name`, `email`, `password`, `role`, `created_at
 (113, 'sfatt', 'staff@gmail.com', '$2y$10$wehJG7B3pUgxrPPPu1amvOwie.kwM8C9iG92SBvorjwF61imSfyw.', 'Staff', '2024-10-29 13:01:57'),
 (114, 'student2', 'student2@gmail.com', '$2y$10$o.3Bw6TLYIsGzbwxlqgkdeFrJXKVIMykObb2tpSZ5GjkXBe9vQFNW', 'Student', '2024-10-29 13:10:03'),
 (115, 'staff2', 'staff2@gmail.com', '$2y$10$xkSY3jRzbBdUcSBHh6nxveuVNOffqEOQVPLg5sm1utTxY4EWGriDC', 'Staff', '2024-10-29 13:14:26'),
-(116, 'student3', 'student3@gmail.com', '$2y$10$5fiHNiBW94deFmkw/nzvcuauOIW71mP6JnC0hTFi9yt3W4g/1j58O', 'Student', '2024-10-29 13:16:56');
+(116, 'student3', 'student3@gmail.com', '$2y$10$5fiHNiBW94deFmkw/nzvcuauOIW71mP6JnC0hTFi9yt3W4g/1j58O', 'Student', '2024-10-29 13:16:56'),
+(117, '123', '123@gmail.com', '$2y$10$m4PCznSzGxtE25cQA68FFuu/kCk.sJL6MA3/5T7Zf767SGLHH3oXG', 'Staff', '2024-11-08 12:55:26');
 
 --
 -- Indexes for dumped tables
@@ -361,7 +365,7 @@ ALTER TABLE `admins`
 -- AUTO_INCREMENT for table `appointments`
 --
 ALTER TABLE `appointments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
 
 --
 -- AUTO_INCREMENT for table `appointment_history`
@@ -391,7 +395,7 @@ ALTER TABLE `notifications`
 -- AUTO_INCREMENT for table `staff`
 --
 ALTER TABLE `staff`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=96;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=97;
 
 --
 -- AUTO_INCREMENT for table `staff_availability`
@@ -415,7 +419,7 @@ ALTER TABLE `students`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=117;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=118;
 
 --
 -- Constraints for dumped tables
